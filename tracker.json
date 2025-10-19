@@ -1,0 +1,20 @@
+{
+  "notDone": [
+    {
+      "taskId": "",
+      "taskName": ""
+    }
+  ],
+  "inProgress": [
+    {
+      "taskId": "",
+      "taskName": ""
+    }
+  ],
+  "done": [
+    {
+      "taskId": "",
+      "taskName": ""
+    }
+  ]
+}
