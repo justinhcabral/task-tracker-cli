@@ -43,6 +43,12 @@ after initializing tracker.json, we need to create functions for the following t
 3. deleting tasks
 
 steps to add task
-1. when using
+Input: task
+Process: 
+1.) Take in the process in string form
+2.) Look for the notDone section in tracker.json
+3.) Add the task there, along with an ID
+4.) console.log(`Task added successfully (ID:${notDone.id})`)
+Output: Task added successfully (ID:1)
 
 */
