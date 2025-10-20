@@ -1,24 +1,30 @@
-{
-  "notDone": [
-    {
-      "taskId": "1",
-      "taskName": "Goon"
-    },
-    {
-      "taskId": 2,
-      "taskName": "Goon to Madelene my babycakes"
-    }
-  ],
-  "inProgress": [
-    {
-      "taskId": "1",
-      "taskName": "Goon"
-    }
-  ],
-  "done": [
-    {
-      "taskId": "1",
-      "taskName": "Goon"
-    }
-  ]
-}
+[
+  {
+    "id": "",
+    "description": "",
+    "status": "",
+    "createdAt": "",
+    "updatedAt": ""
+  },
+  {
+    "id": 1,
+    "description": "Goon to lebron",
+    "status": "Not Done",
+    "createdAt": "20/9/2025",
+    "updatedAt": "20/9/2025"
+  },
+  {
+    "id": 2,
+    "description": "Goon to lebron",
+    "status": "Not Done",
+    "createdAt": "20/9/2025",
+    "updatedAt": "20/9/2025"
+  },
+  {
+    "id": 3,
+    "description": "Goon to lebron",
+    "status": "Not Done",
+    "createdAt": "20/9/2025",
+    "updatedAt": "20/9/2025"
+  }
+]
