@@ -19,7 +19,7 @@ function writeTracker(content, successMessage) {
   contentString = JSON.stringify(content);
   try {
     fs.writeFileSync(filePath, contentString);
-    console.log("data written successfully");
+    console.log(successMessage);
   } catch (err) {
     console.log(err);
   }
@@ -29,8 +29,8 @@ function writeTracker(content, successMessage) {
 
 const data = [{ id: 1, description: "dick" }];
 
-writeTracker(data, "");
-console.log(readTracker());
+// writeTracker(data, "");
+// console.log(readTracker());
 
 // steps to add task
 // Input: task,
@@ -43,7 +43,36 @@ console.log(readTracker());
 // 6.) console.log(`Task added successfully (ID:${notDone.id})`)
 function add(taskDescription) {
   let trackerContent = readTracker();
+  let date = new Date();
+  console.log(trackerContent.length);
+  // dynamic key
+  let key;
+  if (trackerContent.length === 0) {
+    key = 1;
+  } else {
+    // get all current ids
+    let ids = trackerContent.map((task) => task.id);
+    // find the highest one
+    key = Math.max(...ids) + 1;
+  }
+
+  const newTask = {
+    id: key,
+    description: taskDescription,
+    status: "todo",
+    createdAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+    updatedAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+  };
+
+  try {
+    trackerContent.push(newTask);
+    writeTracker(trackerContent, "Task Added!");
+  } catch (error) {
+    console.log(error);
+  }
 }
+
+add("Goon to madi");
 
 // let trackerContent; // to access the contents of the json files
 
