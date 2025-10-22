@@ -87,6 +87,26 @@ function update(id, description) {
   }
 }
 
+// Implement delete task
+function deleteTask(id) {
+  let trackerContent = readTracker();
+
+  // Index look up
+  const isId = (element) => element.id === id;
+  let indx = trackerContent.findIndex(isId);
+
+  if (indx === -1) {
+    console.log(`Task with ID: ${id} does not exist!`);
+    return;
+  }
+  try {
+    trackerContent.splice(indx, 1);
+    writeTracker(trackerContent, `Deleted task ${id}`);
+  } catch (error) {
+    console.log(`Error deleting task ${id}`);
+  }
+}
+
 // let trackerContent; // to access the contents of the json files
 
 // // empty data that initializes tracker.json
