@@ -108,6 +108,7 @@ function deleteTask(id) {
 
 function markAs(id, status) {
   let trackerContent = readTracker();
+  const choices = ["todo", "in-progress", "done"];
 
   // index lookup
   const isId = (element) => element.id === id; // testing function for findIndex
@@ -116,6 +117,13 @@ function markAs(id, status) {
   // error handling if the task does not exist
   if (indx === -1) {
     console.log(`Task with ID: ${id} does not exist!`);
+    return;
+  }
+
+  if (!choices.includes(status)) {
+    console.log(
+      `${status} is not a valid task status! Please choose from ${choices}`
+    );
     return;
   }
   // use spread operator to use previous task and overwrite only the properties that need overwriting
@@ -134,7 +142,7 @@ function markAs(id, status) {
   }
 }
 
-markAs(1, "in-progress");
+markAs(1, "done");
 
 // let trackerContent; // to access the contents of the json files
 
