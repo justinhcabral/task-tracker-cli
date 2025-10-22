@@ -5,6 +5,9 @@ const fs = require("fs"); //file system
 const path = require("path"); // import path
 const filePath = path.join(__dirname, "tracker.json"); // gets the path to the tracker.json file
 
+let date = new Date();
+let d = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+
 function readTracker() {
   try {
     jsonstring = fs.readFileSync(filePath, "utf-8");
@@ -27,8 +30,6 @@ function writeTracker(content, successMessage) {
 
 function add(taskDescription) {
   let trackerContent = readTracker(); // reads tracker data into object array
-  let date = new Date();
-  let d = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 
   // dynamic key
   let key;
@@ -59,8 +60,6 @@ function add(taskDescription) {
 
 function update(id, description) {
   let trackerContent = readTracker();
-  let date = new Date();
-  let d = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 
   // index lookup
   const isId = (element) => element.id === id; // testing function for findIndex
@@ -106,6 +105,36 @@ function deleteTask(id) {
     console.log(`Error deleting task ${id}`);
   }
 }
+
+function markAs(id, status) {
+  let trackerContent = readTracker();
+
+  // index lookup
+  const isId = (element) => element.id === id; // testing function for findIndex
+  let indx = trackerContent.findIndex(isId);
+
+  // error handling if the task does not exist
+  if (indx === -1) {
+    console.log(`Task with ID: ${id} does not exist!`);
+    return;
+  }
+  // use spread operator to use previous task and overwrite only the properties that need overwriting
+  oldTask = trackerContent[indx];
+  updatedTask = {
+    ...oldTask,
+    status: status,
+    updatedAt: d,
+  };
+  // splice element from array
+  try {
+    trackerContent.splice(indx, 1, updatedTask);
+    writeTracker(trackerContent, `Task ${id} marked as ${status}!`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+markAs(1, "in-progress");
 
 // let trackerContent; // to access the contents of the json files
 
