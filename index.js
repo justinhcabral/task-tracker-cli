@@ -25,25 +25,10 @@ function writeTracker(content, successMessage) {
   }
 }
 
-// test run
-
-const data = [{ id: 1, description: "dick" }];
-
-// writeTracker(data, "");
-// console.log(readTracker());
-
-// steps to add task
-// Input: task,
-// Process:
-// 1.) read entire json file
-// 2.) parse json file into javascript object
-// 3.) modify the javascript object
-// 4.) convert it back to json
-// 5.) write entire file of json
-// 6.) console.log(`Task added successfully (ID:${notDone.id})`)
 function add(taskDescription) {
   let trackerContent = readTracker(); // reads tracker data into object array
   let date = new Date();
+  let d = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 
   // dynamic key
   let key;
@@ -60,53 +45,38 @@ function add(taskDescription) {
     id: key,
     description: taskDescription,
     status: "todo",
-    createdAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
-    updatedAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+    createdAt: d,
+    updatedAt: d,
   };
 
   try {
     trackerContent.push(newTask);
     writeTracker(trackerContent, "Task Added!");
   } catch (error) {
-    console.log(error);
+    console.log(`Error while adding task: ${error}`);
   }
 }
-
-// Add tasks simulation
-
-// add("Goon to madi");
-// add("Goon to Lebron");
-// add("Stop gooning");
-
-// steps to splicing by id
-/*
-1. Map ids
-2. Loop through ids to find the id that you want to change, when you get it, return the index
-3. splice the array using that index and then replace with the updated task
-4. write data to tracker.json
-
- */
 
 function update(id, description) {
   let trackerContent = readTracker();
   let date = new Date();
+  let d = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 
-  let ids = trackerContent.map((task) => task.id);
-  let indx;
+  // index lookup
+  const isId = (element) => element.id === id; // testing function for findIndex
+  let indx = trackerContent.findIndex(isId);
 
-  ids.forEach((element) => {
-    if (element === id) {
-      indx = element - 1;
-    }
-  });
-
-  // use reduce function for mapping keys
+  // error handling if the task does not exist
+  if (indx === -1) {
+    console.log(`Task with ID: ${id} does not exist!`);
+    return;
+  }
+  // use spread operator to use previous task and overwrite only the properties that need overwriting
+  oldTask = trackerContent[indx];
   updatedTask = {
-    id: parseInt(`${trackerContent[indx].id}`),
+    ...oldTask,
     description: description,
-    status: `${trackerContent[indx].status}`,
-    createdAt: `${trackerContent[indx].createdAt}`,
-    updatedAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+    updatedAt: d,
   };
   // splice element from array
   try {
@@ -116,7 +86,6 @@ function update(id, description) {
     console.log(error);
   }
 }
-update(2, "Jabol?");
 
 // let trackerContent; // to access the contents of the json files
 
