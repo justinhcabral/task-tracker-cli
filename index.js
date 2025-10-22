@@ -16,7 +16,7 @@ function readTracker() {
 }
 
 function writeTracker(content, successMessage) {
-  contentString = JSON.stringify(content);
+  contentString = JSON.stringify(content, null, 2);
   try {
     fs.writeFileSync(filePath, contentString);
     console.log(successMessage);
@@ -42,9 +42,9 @@ const data = [{ id: 1, description: "dick" }];
 // 5.) write entire file of json
 // 6.) console.log(`Task added successfully (ID:${notDone.id})`)
 function add(taskDescription) {
-  let trackerContent = readTracker();
+  let trackerContent = readTracker(); // reads tracker data into object array
   let date = new Date();
-  console.log(trackerContent.length);
+
   // dynamic key
   let key;
   if (trackerContent.length === 0) {
@@ -72,7 +72,51 @@ function add(taskDescription) {
   }
 }
 
-add("Goon to madi");
+// Add tasks simulation
+
+// add("Goon to madi");
+// add("Goon to Lebron");
+// add("Stop gooning");
+
+// steps to splicing by id
+/*
+1. Map ids
+2. Loop through ids to find the id that you want to change, when you get it, return the index
+3. splice the array using that index and then replace with the updated task
+4. write data to tracker.json
+
+ */
+
+function update(id, description) {
+  let trackerContent = readTracker();
+  let date = new Date();
+
+  let ids = trackerContent.map((task) => task.id);
+  let indx;
+
+  ids.forEach((element) => {
+    if (element === id) {
+      indx = element - 1;
+    }
+  });
+
+  // use reduce function for mapping keys
+  updatedTask = {
+    id: parseInt(`${trackerContent[indx].id}`),
+    description: description,
+    status: `${trackerContent[indx].status}`,
+    createdAt: `${trackerContent[indx].createdAt}`,
+    updatedAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+  };
+  // splice element from array
+  try {
+    trackerContent.splice(indx, 1, updatedTask);
+    writeTracker(trackerContent, `Updated task ${id}!`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+update(2, "Jabol?");
 
 // let trackerContent; // to access the contents of the json files
 
