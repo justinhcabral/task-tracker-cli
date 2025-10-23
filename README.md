@@ -18,6 +18,7 @@ Nice to haves
 - navigation using arrow keys and options to write to the command line just like in vim i guess
 - notifications
 - addition to reminders application in macbook
+- delete multiple tasks with delete function if user input for id is more than one.
 
 When will the project be complete
 
