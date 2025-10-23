@@ -142,8 +142,38 @@ function markAs(id, status) {
   }
 }
 
-markAs(1, "done");
+// implement list function
+function list(status) {
+  let trackerContent = readTracker();
+  const choices = ["todo", "in-progress", "done"];
 
+  let tasks = trackerContent.filter((task) => task.status === status);
+  let tasksDescription = tasks.map(
+    (element) =>
+      `Task ID: ${element.id} Task Description: ${element.description}
+    `
+  );
+
+  if (tasks.length === 0) {
+    console.log(`There are no tasks in ${status}`);
+    return;
+  }
+
+  if (!choices.includes(status)) {
+    console.log(
+      `${status} is not a valid task status! Please choose from ${choices}`
+    );
+    return;
+  }
+
+  try {
+    console.log(tasksDescription.join("\n"));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+list("todo");
 // let trackerContent; // to access the contents of the json files
 
 // // empty data that initializes tracker.json
