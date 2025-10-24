@@ -1,128 +1,86 @@
 [
   {
     "id": 1,
-    "description": "Gusto ko ng taho?",
-    "status": "done",
-    "createdAt": "22/10/2025",
-    "updatedAt": "23/10/2025"
+    "description": "jabol",
+    "status": "todo",
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   },
   {
     "id": 2,
-    "description": "Gusto ko ng taho",
+    "description": "jabol",
     "status": "todo",
-    "createdAt": "09/09/2025",
-    "updatedAt": "23/10/2025"
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   },
   {
     "id": 3,
-    "description": "Gusto ko ng taho",
+    "description": "jabol",
     "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "23/10/2025"
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   },
   {
     "id": 4,
-    "description": "Goon to madi",
+    "description": "jabol",
     "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "22/10/2025"
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   },
   {
     "id": 5,
-    "description": "Jabol?",
+    "description": "jabol",
     "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "22/10/2025"
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   },
   {
     "id": 6,
-    "description": "Stop gooning",
+    "description": "jabol",
     "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "22/10/2025"
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   },
   {
     "id": 7,
-    "description": "Jabol?",
+    "description": "jabol",
     "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "23/10/2025"
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   },
   {
     "id": 8,
-    "description": "Goon to Lebron",
+    "description": "jabol",
     "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "22/10/2025"
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   },
   {
     "id": 9,
-    "description": "Stop gooning",
+    "description": "jabol",
     "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "22/10/2025"
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   },
   {
     "id": 10,
-    "description": "Goon to madi",
+    "description": "jabol",
     "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "22/10/2025"
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   },
   {
     "id": 11,
-    "description": "Goon to Lebron",
+    "description": "jabol",
     "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "22/10/2025"
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   },
   {
     "id": 12,
-    "description": "Stop gooning",
+    "description": "jabol",
     "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "22/10/2025"
-  },
-  {
-    "id": 13,
-    "description": "Goon to madi",
-    "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "22/10/2025"
-  },
-  {
-    "id": 14,
-    "description": "Goon to Lebron",
-    "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "22/10/2025"
-  },
-  {
-    "id": 15,
-    "description": "Stop gooning",
-    "status": "todo",
-    "createdAt": "22/10/2025",
-    "updatedAt": "22/10/2025"
-  },
-  {
-    "id": 16,
-    "description": "Gusto ko ng taho",
-    "status": "todo",
-    "createdAt": "23/10/2025",
-    "updatedAt": "23/10/2025"
-  },
-  {
-    "id": 17,
-    "description": "Jakulin si julian",
-    "status": "todo",
-    "createdAt": "23/10/2025",
-    "updatedAt": "23/10/2025"
-  },
-  {
-    "id": 18,
-    "description": "Jakulin si julian",
-    "status": "todo",
-    "createdAt": "23/10/2025",
-    "updatedAt": "23/10/2025"
+    "createdAt": "25/10/2025",
+    "updatedAt": "25/10/2025"
   }
 ]

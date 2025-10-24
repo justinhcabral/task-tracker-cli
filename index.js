@@ -10,6 +10,10 @@ let d = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 
 function readTracker() {
   try {
+    if (!fs.existsSync(filePath)) {
+      writeTracker([], "Task List created!");
+      // return [];
+    }
     jsonstring = fs.readFileSync(filePath, "utf-8");
     return JSON.parse(jsonstring);
   } catch (error) {
@@ -145,16 +149,27 @@ function markAs(id, status) {
 // implement list function
 function list(status) {
   let trackerContent = readTracker();
-  const choices = ["todo", "in-progress", "done"];
+  const choices = ["todo", "in-progress", "done", ""];
 
-  let tasks = trackerContent.filter((task) => task.status === status);
-  let tasksDescription = tasks.map(
-    (element) =>
-      `Task ID: ${element.id} Task Description: ${element.description}
+  let tasksDescription;
+  let tasks;
+
+  if (status === "") {
+    tasksDescription = trackerContent.map(
+      (element) =>
+        `Task ID: ${element.id} Task Description: ${element.description}
     `
-  );
+    );
+  } else {
+    tasks = trackerContent.filter((task) => task.status === status);
+    tasksDescription = tasks.map(
+      (element) =>
+        `Task ID: ${element.id} Task Description: ${element.description}
+    `
+    );
+  }
 
-  if (tasks.length === 0) {
+  if (tasksDescription.length === 0) {
     console.log(`There are no tasks in ${status}`);
     return;
   }
@@ -173,91 +188,4 @@ function list(status) {
   }
 }
 
-list("todo");
-// let trackerContent; // to access the contents of the json files
-
-// // empty data that initializes tracker.json
-// const trackerTemplate = [{}];
-// const jsonString = JSON.stringify(trackerTemplate, null, 2);
-
-// if (!fs.existsSync(filePath)) {
-//   fs.writeFile("tracker.json", jsonString, (err) => {
-//     err ? console.log(err) : console.log("json saved successfully");
-//   });
-// }
-
-// const datares = fs.readFileSync(filePath);
-// trackerContent = JSON.parse(datares);
-
-// /*
-// after initializing tracker.json, we need to create functions for the following things
-
-// 1. adding tasks
-// 2. updating tasks
-// 3. deleting tasks
-
-// steps to add task
-// Input: task,
-// Process:
-// 1.) read entire json file
-// 2.) parse json file into javascript object
-// 3.) modify the javascript object
-// 4.) convert it back to json
-// 5.) write entire file of json
-// 6.) console.log(`Task added successfully (ID:${notDone.id})`)
-// Output: Task added successfully (ID:1)
-// */
-
-// const add = (task) => {
-//   let key;
-//   const d = new Date();
-
-//   if (trackerContent.length === 0) {
-//     key = 1;
-//   } else {
-//     // FIlter out any invalid entries and get numerid IDs
-//     const validIds = trackerContent
-//       .map((item) => Number(item.id))
-//       .filter((id) => !isNaN(id) && id > 0);
-
-//     const largest_id = validIds.length > 0 ? Math.max(...validIds) : 0;
-//     key = largest_id + 1;
-//   }
-
-//   const addTask = {
-//     id: key,
-//     description: task,
-//     status: "Not Done",
-//     createdAt: `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`,
-//     updatedAt: `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`,
-//   };
-//   trackerContent.push(addTask);
-
-//   trackerContentString = JSON.stringify(trackerContent, null, 2);
-
-//   fs.writeFile("tracker.json", trackerContentString, (err) => {
-//     err
-//       ? console.log(err)
-//       : console.log(`Task Added Successfully (ID: ${key})`);
-//   });
-// };
-// add("Goon to lebron");
-
-// /*
-// implement update
-// Input: task, id number of task
-// Process:
-// 1.) read entire json file
-// 2.) parse json file into javascript object
-// 3.) modify the javascript object
-// 4.) convert it back to json
-// 5.) write entire file of json
-// 6.) console.log(`Task added successfully (ID:${notDone.id})`)
-// Output: Task added successfully (ID:1)
-//  */
-
-// // const update = (taskId) => {
-
-// // }
-
-// // console.log(tasks[1]);s
+list();
