@@ -147,14 +147,21 @@ function markAs(id, status) {
 }
 
 // implement list function
-function list(status) {
+function list(status = "all") {
   let trackerContent = readTracker();
-  const choices = ["todo", "in-progress", "done", ""];
+  const choices = ["todo", "in-progress", "done", "all"];
 
   let tasksDescription;
   let tasks;
+  // Error Handling
+  if (!choices.includes(status)) {
+    console.log(
+      `${status} is not a valid task status! Please choose from ${choices}`
+    );
+    return;
+  }
 
-  if (status === "") {
+  if (status === "all") {
     tasksDescription = trackerContent.map(
       (element) =>
         `Task ID: ${element.id} Task Description: ${element.description}
@@ -188,4 +195,4 @@ function list(status) {
   }
 }
 
-list();
+list("in-progress");
