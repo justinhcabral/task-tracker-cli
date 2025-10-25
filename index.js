@@ -3,10 +3,96 @@
 
 const fs = require("fs"); //file system
 const path = require("path"); // import path
+const process = require("process"); // to run from terminal
+
 const filePath = path.join(__dirname, "tracker.json"); // gets the path to the tracker.json file
 
 let date = new Date();
 let d = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+
+// to run in terminal
+const args = process.argv.slice(2);
+const command = args[0];
+
+// if no command was provided
+if (!command) {
+  console.log("Please provide a command."); // improve to output a whole ass list of commands and inputs to put just like in other cli tools
+  process.exit(1);
+}
+
+switch (command) {
+  case "add": {
+    description = args.slice(1).join(" ");
+    if (!description) {
+      console.log("Please provide a task description");
+      process.exit(1);
+    }
+    add(description);
+    break;
+  }
+
+  case "update": {
+    id = parseInt(args[1]);
+    description = args.slice(2).join(" ");
+    if (isNaN(id) || !description) {
+      console.log("Mali ka boss ayusin mo naman");
+      process.exit(1);
+    }
+    update(id, description);
+    break;
+  }
+
+  case "delete": {
+    id = parseInt(args[1]);
+    if (isNaN(id)) {
+      console.log(
+        "Oh hell naw that aint a number dawg try again you ain't slick"
+      );
+      process.exit(1);
+    }
+    deleteTask(id);
+    break;
+  }
+
+  case "mark-in-progress": {
+    id = parseInt(args[1]);
+
+    if (isNaN(id)) {
+      console.log("NOT A NUMBER DUMBASS WHAHAHA");
+      process.exit(1);
+    }
+    markAs(id, "in-progress");
+    break;
+  }
+
+  case "mark-done": {
+    id = parseInt(args[1]);
+
+    if (isNaN(id)) {
+      console.log("NOT A NUMBER DUMBASS WHAHAHA");
+      process.exit(1);
+    }
+    markAs(id, "done");
+    break;
+  }
+
+  case "mark-todo": {
+    id = parseInt(args[1]);
+
+    if (isNaN(id)) {
+      console.log("NOT A NUMBER DUMBASS WHAHAHA");
+      process.exit(1);
+    }
+    markAs(id, "todo");
+    break;
+  }
+
+  case "list": {
+    const status = args[1] || "all";
+    list(status);
+    break;
+  }
+}
 
 function readTracker() {
   try {
@@ -194,5 +280,3 @@ function list(status = "all") {
     console.log(error);
   }
 }
-
-list("in-progress");
