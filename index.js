@@ -22,7 +22,7 @@ if (!command) {
 
 switch (command) {
   case "add": {
-    description = args.slice(1).join(" ");
+    const description = args.slice(1).join(" ");
     if (!description) {
       console.log("Please provide a task description");
       process.exit(1);
@@ -32,8 +32,8 @@ switch (command) {
   }
 
   case "update": {
-    id = parseInt(args[1]);
-    description = args.slice(2).join(" ");
+    const id = parseInt(args[1]);
+    const description = args.slice(2).join(" ");
     if (isNaN(id) || !description) {
       console.log("Mali ka boss ayusin mo naman");
       process.exit(1);
@@ -43,7 +43,7 @@ switch (command) {
   }
 
   case "delete": {
-    id = parseInt(args[1]);
+    const id = parseInt(args[1]);
     if (isNaN(id)) {
       console.log(
         "Oh hell naw that aint a number dawg try again you ain't slick"
@@ -55,7 +55,7 @@ switch (command) {
   }
 
   case "mark-in-progress": {
-    id = parseInt(args[1]);
+    const id = parseInt(args[1]);
 
     if (isNaN(id)) {
       console.log("NOT A NUMBER DUMBASS WHAHAHA");
@@ -66,7 +66,7 @@ switch (command) {
   }
 
   case "mark-done": {
-    id = parseInt(args[1]);
+    const id = parseInt(args[1]);
 
     if (isNaN(id)) {
       console.log("NOT A NUMBER DUMBASS WHAHAHA");
@@ -77,7 +77,7 @@ switch (command) {
   }
 
   case "mark-todo": {
-    id = parseInt(args[1]);
+    const id = parseInt(args[1]);
 
     if (isNaN(id)) {
       console.log("NOT A NUMBER DUMBASS WHAHAHA");
@@ -98,9 +98,9 @@ function readTracker() {
   try {
     if (!fs.existsSync(filePath)) {
       writeTracker([], "Task List created!");
-      // return [];
+      return [];
     }
-    jsonstring = fs.readFileSync(filePath, "utf-8");
+    const jsonstring = fs.readFileSync(filePath, "utf-8");
     return JSON.parse(jsonstring);
   } catch (error) {
     console.log("Error reading tracker: ", error.message);
@@ -109,7 +109,7 @@ function readTracker() {
 }
 
 function writeTracker(content, successMessage) {
-  contentString = JSON.stringify(content, null, 2);
+  const contentString = JSON.stringify(content, null, 2);
   try {
     fs.writeFileSync(filePath, contentString);
     console.log(successMessage);
@@ -127,7 +127,7 @@ function add(taskDescription) {
     key = 1;
   } else {
     // get all current ids
-    let ids = trackerContent.map((task) => task.id);
+    const ids = trackerContent.map((task) => task.id);
     // find the highest one
     key = Math.max(...ids) + 1;
   }
@@ -153,7 +153,7 @@ function update(id, description) {
 
   // index lookup
   const isId = (element) => element.id === id; // testing function for findIndex
-  let indx = trackerContent.findIndex(isId);
+  const indx = trackerContent.findIndex(isId);
 
   // error handling if the task does not exist
   if (indx === -1) {
@@ -182,7 +182,7 @@ function deleteTask(id) {
 
   // Index look up
   const isId = (element) => element.id === id;
-  let indx = trackerContent.findIndex(isId);
+  const indx = trackerContent.findIndex(isId);
 
   if (indx === -1) {
     console.log(`Task with ID: ${id} does not exist!`);
@@ -202,7 +202,7 @@ function markAs(id, status) {
 
   // index lookup
   const isId = (element) => element.id === id; // testing function for findIndex
-  let indx = trackerContent.findIndex(isId);
+  const indx = trackerContent.findIndex(isId);
 
   // error handling if the task does not exist
   if (indx === -1) {
@@ -264,13 +264,6 @@ function list(status = "all") {
 
   if (tasksDescription.length === 0) {
     console.log(`There are no tasks in ${status}`);
-    return;
-  }
-
-  if (!choices.includes(status)) {
-    console.log(
-      `${status} is not a valid task status! Please choose from ${choices}`
-    );
     return;
   }
 
