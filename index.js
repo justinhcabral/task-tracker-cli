@@ -35,7 +35,9 @@ switch (command) {
     const id = parseInt(args[1]);
     const description = args.slice(2).join(" ");
     if (isNaN(id) || !description) {
-      console.log("Mali ka boss ayusin mo naman");
+      console.log(
+        "Either ur id is not a number or you don't have a new description bruh."
+      );
       process.exit(1);
     }
     update(id, description);
@@ -58,7 +60,9 @@ switch (command) {
     const id = parseInt(args[1]);
 
     if (isNaN(id)) {
-      console.log("NOT A NUMBER DUMBASS WHAHAHA");
+      console.log(
+        "That's not an id king, list it if you want to see which id you're pertaining to or look straight into the file lol."
+      );
       process.exit(1);
     }
     markAs(id, "in-progress");
@@ -69,7 +73,7 @@ switch (command) {
     const id = parseInt(args[1]);
 
     if (isNaN(id)) {
-      console.log("NOT A NUMBER DUMBASS WHAHAHA");
+      console.log("Nice try bro but put an id in this time");
       process.exit(1);
     }
     markAs(id, "done");
@@ -80,7 +84,9 @@ switch (command) {
     const id = parseInt(args[1]);
 
     if (isNaN(id)) {
-      console.log("NOT A NUMBER DUMBASS WHAHAHA");
+      console.log(
+        "That's not an id king, list it if you want to see which id you're pertaining to or look straight into the file lol."
+      );
       process.exit(1);
     }
     markAs(id, "todo");
@@ -250,14 +256,14 @@ function list(status = "all") {
   if (status === "all") {
     tasksDescription = trackerContent.map(
       (element) =>
-        `Task ID: ${element.id} Task Description: ${element.description}
+        `Task ID: ${element.id} Task Description: ${element.description} Task Status: ${element.status} Created: ${element.createdAt} Updated: ${element.updatedAt}
     `
     );
   } else {
     tasks = trackerContent.filter((task) => task.status === status);
     tasksDescription = tasks.map(
       (element) =>
-        `Task ID: ${element.id} Task Description: ${element.description}
+        `Task ID: ${element.id} Task Description: ${element.description} Task Status: ${element.status} Created: ${element.createdAt} Updated: ${element.updatedAt}
     `
     );
   }
