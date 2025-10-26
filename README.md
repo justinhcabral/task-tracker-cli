@@ -88,6 +88,25 @@ node index.js mark-done
 node index.js delete 17
 ```
 
+If you wish to run the functions using `task-cli` without having to use `node index.js` you can create a symlink that allows you to run this CLI tool from anywhere in your terminal
+
+```
+# Run in project directory
+npm link
+```
+
+Once you've linked it, you can run functions like so,
+
+```
+task-cli add "Go to the beach"
+```
+
+If you decide to unlink it, just run this anywhere in your terminal
+
+```
+npm unlink -g tasktrackercli
+```
+
 ## Sample JSON Structure
 
 ```
